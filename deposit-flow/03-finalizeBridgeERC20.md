@@ -1,0 +1,164 @@
+# Function Review: finalizeBridgeERC20(...)
+
+## 1. Function Code
+
+```solidity
+function finalizeBridgeERC20(
+    address localToken,
+    address remoteToken,
+    address from,
+    address to,
+    uint256 amount,
+    bytes calldata extraData
+) external {
+    require(
+        msg.sender == address(messenger)
+    );
+
+    require(
+        messenger.xDomainMessageSender() == address(otherBridge)
+    );
+
+    IOptimismMintableERC20(localToken).mint(
+        to,
+        amount
+    );
+}
+```
+
+Note:
+
+```text
+This is simplified Optimism-style bridge finalization code for learning.
+```
+
+## 2. What This Function Does
+
+`finalizeBridgeERC20(...)` completes the deposit on the destination chain.
+
+In simple words:
+
+```text
+The L2 bridge receives a valid cross-chain message and mints tokens to the user.
+```
+
+This function is critical because it creates destination-chain value.
+
+## 3. Important Parts Explained
+
+### Messenger Check
+
+```solidity
+require(
+    msg.sender == address(messenger)
+);
+```
+
+The direct caller must be the local messenger.
+
+Security meaning:
+
+```text
+Users should not be able to call finalizeBridgeERC20(...) directly.
+```
+
+### Original Sender Check
+
+```solidity
+require(
+    messenger.xDomainMessageSender() == address(otherBridge)
+);
+```
+
+This checks who sent the message on the other chain.
+
+Security meaning:
+
+```text
+The original sender must be the trusted counterpart bridge.
+```
+
+This is stronger than only checking `msg.sender`.
+
+### Mint
+
+```solidity
+IOptimismMintableERC20(localToken).mint(
+    to,
+    amount
+);
+```
+
+This mints destination-chain tokens to the recipient.
+
+Security meaning:
+
+```text
+Minting must be backed by a real lock / burn on the source chain.
+```
+
+## 4. Main Invariants
+
+### Invariant 1
+
+```text
+Only the messenger can call finalizeBridgeERC20(...).
+```
+
+If broken:
+
+```text
+An attacker can directly call finalize and mint tokens.
+```
+
+Consequence:
+
+```text
+fake mint / unbacked liquidity
+```
+
+### Invariant 2
+
+```text
+The original cross-chain sender must be the trusted counterpart bridge.
+```
+
+If broken:
+
+```text
+A fake bridge message may be accepted as real.
+```
+
+Consequence:
+
+```text
+spoofed message / ghost mint
+```
+
+### Invariant 3
+
+```text
+Mint amount must equal the real source-chain locked amount.
+```
+
+If broken:
+
+```text
+The destination chain can mint more than the source chain locked.
+```
+
+Consequence:
+
+```text
+broken token conservation
+```
+
+## 5. Short Conclusion
+
+`finalizeBridgeERC20(...)` is the deposit finalization boundary.
+
+The most important question:
+
+```text
+Is this mint backed by a real and authentic source-chain deposit?
+```

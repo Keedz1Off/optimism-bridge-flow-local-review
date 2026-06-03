@@ -1,0 +1,199 @@
+# Function Review: relayMessage(...)
+
+## 1. Function Code
+
+```solidity
+function relayMessage(
+    address _target,
+    address _sender,
+    bytes memory _message
+) external {
+    require(
+        msg.sender == address(otherMessenger)
+    );
+
+    bytes32 hash = keccak256(
+        abi.encode(
+            _sender,
+            _target,
+            _message
+        )
+    );
+
+    require(
+        !successfulMessages[hash]
+    );
+
+    successfulMessages[hash] = true;
+
+    (bool success,) = _target.call(_message);
+
+    require(success);
+}
+```
+
+Note:
+
+```text
+This is simplified Optimism-style messenger logic for learning.
+```
+
+## 2. What This Function Does
+
+`relayMessage(...)` validates and executes a cross-chain message.
+
+In simple words:
+
+```text
+It checks that the message came from the trusted messenger,
+checks that the message was not already executed,
+then calls the target contract.
+```
+
+## 3. Important Parts Explained
+
+### Trusted Messenger Check
+
+```solidity
+require(
+    msg.sender == address(otherMessenger)
+);
+```
+
+Only the trusted messenger can call this relay function.
+
+Security meaning:
+
+```text
+This is the auth boundary.
+```
+
+If anyone can call this function directly, they may execute fake bridge messages.
+
+### Message Hash
+
+```solidity
+bytes32 hash = keccak256(
+    abi.encode(
+        _sender,
+        _target,
+        _message
+    )
+);
+```
+
+This creates a unique message fingerprint.
+
+It includes:
+
+- original sender
+- destination target
+- message calldata
+
+Security meaning:
+
+```text
+The hash identifies this exact message.
+```
+
+### Replay Protection
+
+```solidity
+require(
+    !successfulMessages[hash]
+);
+```
+
+This checks that the same message was not already executed.
+
+### Mark Executed Before Call
+
+```solidity
+successfulMessages[hash] = true;
+```
+
+The message is marked as executed before the external call.
+
+Security meaning:
+
+```text
+The same message should not be executed twice.
+```
+
+### Execute Target
+
+```solidity
+(bool success,) = _target.call(_message);
+
+require(success);
+```
+
+This calls the destination contract with the provided calldata.
+
+If execution fails, the function reverts.
+
+## 4. Main Invariants
+
+### Invariant 1
+
+```text
+Only the trusted messenger can relay messages.
+```
+
+If broken:
+
+```text
+An attacker can execute arbitrary fake messages.
+```
+
+Consequence:
+
+```text
+fake mint / fake release / arbitrary execution
+```
+
+### Invariant 2
+
+```text
+Each message must execute only once.
+```
+
+If broken:
+
+```text
+The same mint or release message can run multiple times.
+```
+
+Consequence:
+
+```text
+replay attack / double execution
+```
+
+### Invariant 3
+
+```text
+Validation must happen before execution.
+```
+
+If broken:
+
+```text
+An attacker-controlled message may execute before security checks.
+```
+
+Consequence:
+
+```text
+invalid cross-chain execution
+```
+
+## 5. Short Conclusion
+
+`relayMessage(...)` is the message execution boundary.
+
+The most important question:
+
+```text
+Can this message execute only if it is authentic and not replayed?
+```
