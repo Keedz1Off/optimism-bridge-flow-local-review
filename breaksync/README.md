@@ -1,27 +1,14 @@
-# Break Think
+What is a Break-think??
+Its what will be happen if this invarint breaks.
 
-This folder is for manual exploit-thinking practice.
+1 INVARIANT
+...
 
-Format:
 
-```text
-Invariant:
+2 CONCENAUENCES
 
-How can it break:
+...
 
-Consequence:
-```
 
-Main method:
 
-```text
-Understand the flow -> Define invariants -> Search for violations
-```
 
-Short version:
-
-```text
-What must be true?
-How can it break?
-What happens if it breaks?
-```
