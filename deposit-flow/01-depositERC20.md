@@ -149,52 +149,16 @@ The target must be the trusted bridge on the other chain.
 Transfer must succeed before the bridge sends the message.
 ```
 
-If broken:
-
-```text
-The bridge may create a mint message without real locked tokens.
-```
-
-Consequence:
-
-```text
-ghost mint / unbacked L2 tokens
-```
-
 ### Invariant 2
 
 ```text
 Message amount must equal the amount actually transferred.
 ```
 
-If broken:
-
-```text
-The L2 bridge may mint more tokens than the L1 bridge received.
-```
-
-Consequence:
-
-```text
-broken accounting / bridge insolvency
-```
-
 ### Invariant 3
 
 ```text
 The L1 token must map to the correct L2 token.
-```
-
-If broken:
-
-```text
-The user may lock one token but receive another token.
-```
-
-Consequence:
-
-```text
-token mapping corruption
 ```
 
 ## 5. Short Conclusion

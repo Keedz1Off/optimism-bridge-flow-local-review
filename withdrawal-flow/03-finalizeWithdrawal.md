@@ -101,52 +101,16 @@ This release must be backed by a real L2 burn.
 Only an authentic withdrawal message can release L1 tokens.
 ```
 
-If broken:
-
-```text
-An attacker can finalize a fake withdrawal.
-```
-
-Consequence:
-
-```text
-fake release / stolen escrowed funds
-```
-
 ### Invariant 2
 
 ```text
 Released amount must equal burned amount.
 ```
 
-If broken:
-
-```text
-L1 bridge releases more tokens than L2 removed.
-```
-
-Consequence:
-
-```text
-bridge insolvency / duplicate value
-```
-
 ### Invariant 3
 
 ```text
 Released token must be the correct L1 token for the burned L2 token.
-```
-
-If broken:
-
-```text
-The bridge may release the wrong asset.
-```
-
-Consequence:
-
-```text
-token mapping corruption
 ```
 
 ## 5. Short Conclusion

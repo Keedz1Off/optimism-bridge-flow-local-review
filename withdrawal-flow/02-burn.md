@@ -70,34 +70,10 @@ This is the economic proof for the later L1 release.
 Only the authorized bridge can burn bridge tokens.
 ```
 
-If broken:
-
-```text
-An attacker may burn someone else's tokens.
-```
-
-Consequence:
-
-```text
-fund loss / griefing
-```
-
 ### Invariant 2
 
 ```text
 Burned amount must be the amount encoded for withdrawal.
-```
-
-If broken:
-
-```text
-The withdrawal message may release a different amount than was burned.
-```
-
-Consequence:
-
-```text
-fake release / accounting mismatch
 ```
 
 ## 5. Short Conclusion

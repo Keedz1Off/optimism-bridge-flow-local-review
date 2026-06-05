@@ -140,52 +140,16 @@ If execution fails, the function reverts.
 Only the trusted messenger can relay messages.
 ```
 
-If broken:
-
-```text
-An attacker can execute arbitrary fake messages.
-```
-
-Consequence:
-
-```text
-fake mint / fake release / arbitrary execution
-```
-
 ### Invariant 2
 
 ```text
 Each message must execute only once.
 ```
 
-If broken:
-
-```text
-The same mint or release message can run multiple times.
-```
-
-Consequence:
-
-```text
-replay attack / double execution
-```
-
 ### Invariant 3
 
 ```text
 Validation must happen before execution.
-```
-
-If broken:
-
-```text
-An attacker-controlled message may execute before security checks.
-```
-
-Consequence:
-
-```text
-invalid cross-chain execution
 ```
 
 ## 5. Short Conclusion

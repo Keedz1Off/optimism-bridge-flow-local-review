@@ -102,52 +102,16 @@ The release message must match the real burn.
 Tokens must be burned on L2 before the L1 release message is finalized.
 ```
 
-If broken:
-
-```text
-The user may keep L2 tokens and also receive L1 tokens.
-```
-
-Consequence:
-
-```text
-double spend / fake release
-```
-
 ### Invariant 2
 
 ```text
 Burn amount must equal release amount.
 ```
 
-If broken:
-
-```text
-The bridge may release more tokens than were burned.
-```
-
-Consequence:
-
-```text
-bridge insolvency / broken accounting
-```
-
 ### Invariant 3
 
 ```text
 The L2 token must map to the correct L1 token.
-```
-
-If broken:
-
-```text
-The user may burn a wrong or cheap token and release a valuable L1 token.
-```
-
-Consequence:
-
-```text
-token mapping exploit
 ```
 
 ## 5. Short Conclusion

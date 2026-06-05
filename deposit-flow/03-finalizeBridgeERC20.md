@@ -105,52 +105,16 @@ Minting must be backed by a real lock / burn on the source chain.
 Only the messenger can call finalizeBridgeERC20(...).
 ```
 
-If broken:
-
-```text
-An attacker can directly call finalize and mint tokens.
-```
-
-Consequence:
-
-```text
-fake mint / unbacked liquidity
-```
-
 ### Invariant 2
 
 ```text
 The original cross-chain sender must be the trusted counterpart bridge.
 ```
 
-If broken:
-
-```text
-A fake bridge message may be accepted as real.
-```
-
-Consequence:
-
-```text
-spoofed message / ghost mint
-```
-
 ### Invariant 3
 
 ```text
 Mint amount must equal the real source-chain locked amount.
-```
-
-If broken:
-
-```text
-The destination chain can mint more than the source chain locked.
-```
-
-Consequence:
-
-```text
-broken token conservation
 ```
 
 ## 5. Short Conclusion
