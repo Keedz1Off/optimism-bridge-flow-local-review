@@ -160,13 +160,3 @@ Message amount must equal the amount actually transferred.
 ```text
 The L1 token must map to the correct L2 token.
 ```
-
-## 5. Short Conclusion
-
-`depositERC20(...)` is the start of the deposit flow.
-
-The most important question:
-
-```text
-Does the L2 message represent the real L1 token transfer?
-```

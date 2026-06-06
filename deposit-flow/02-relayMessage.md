@@ -151,13 +151,3 @@ Each message must execute only once.
 ```text
 Validation must happen before execution.
 ```
-
-## 5. Short Conclusion
-
-`relayMessage(...)` is the message execution boundary.
-
-The most important question:
-
-```text
-Can this message execute only if it is authentic and not replayed?
-```

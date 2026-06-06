@@ -113,13 +113,3 @@ Burn amount must equal release amount.
 ```text
 The L2 token must map to the correct L1 token.
 ```
-
-## 5. Short Conclusion
-
-Withdrawal starts with a source-chain burn.
-
-The most important question:
-
-```text
-Does the L1 release represent a real L2 burn?
-```

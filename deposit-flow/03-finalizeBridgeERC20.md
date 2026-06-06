@@ -116,13 +116,3 @@ The original cross-chain sender must be the trusted counterpart bridge.
 ```text
 Mint amount must equal the real source-chain locked amount.
 ```
-
-## 5. Short Conclusion
-
-`finalizeBridgeERC20(...)` is the deposit finalization boundary.
-
-The most important question:
-
-```text
-Is this mint backed by a real and authentic source-chain deposit?
-```

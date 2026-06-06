@@ -112,13 +112,3 @@ Released amount must equal burned amount.
 ```text
 Released token must be the correct L1 token for the burned L2 token.
 ```
-
-## 5. Short Conclusion
-
-`finalizeWithdrawal(...)` is the L1 release boundary.
-
-The most important question:
-
-```text
-Is this release backed by a valid L2 burn message?
-```

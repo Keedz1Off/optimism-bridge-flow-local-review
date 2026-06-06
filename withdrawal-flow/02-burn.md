@@ -75,13 +75,3 @@ Only the authorized bridge can burn bridge tokens.
 ```text
 Burned amount must be the amount encoded for withdrawal.
 ```
-
-## 5. Short Conclusion
-
-`burn(...)` is the source-chain accounting step for withdrawal.
-
-The most important question:
-
-```text
-Is the later L1 release backed by this exact burn?
-```
