@@ -16,6 +16,16 @@
 
 3. The token on L1 does not match the token on L2.
 
+
+# burn()
+
+## Invariant
+
+
+
+## Concenquences
+
+
 # finalizeBridgeERC20(...)
 
 ## Invariants
