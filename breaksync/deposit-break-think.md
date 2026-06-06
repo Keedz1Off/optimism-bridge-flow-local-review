@@ -23,6 +23,7 @@
 
 # replayMessage()
 
+## Invariants
 
 1. Only the trusted messenger can relay messages.
 
@@ -43,9 +44,25 @@
 
 # finalizeBridgeERC20()
 
-1. 
+## Invariants
+1. Only the messenger can call finalizeBridgeERC20(...).
+
+2. The original cross-chain sender must be the trusted counterpart bridge.
+
+## Concenquences
+1. This can me called by anoyone, this may lead to ghost mint (mint without lock).
+
+2. In the worst case, this function can be called by another spoofed bridge instead of the original L1 bridge.
+    bgv 
 
 
-##
+
+
+
+
+
+
+
+
 
 
