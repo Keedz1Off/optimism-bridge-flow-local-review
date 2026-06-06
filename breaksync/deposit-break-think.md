@@ -11,7 +11,7 @@
 
 1. It may lead to sending a message without locking tokens on L1.
 
-2 The message amount more than the amount actually transfered
+2. The message amount more than the amount actually transfered
 
 <img width="1258" height="430" alt="image" src="https://github.com/user-attachments/assets/a4e08003-fc77-4c08-ac14-8c41ec83d99a" />
 
