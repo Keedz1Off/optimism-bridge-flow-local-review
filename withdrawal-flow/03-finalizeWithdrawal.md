@@ -112,3 +112,27 @@ Released amount must equal burned amount.
 ```text
 Released token must be the correct L1 token for the burned L2 token.
 ```
+
+### Invariant 4
+
+```text
+The recipient must be the recipient encoded in the authentic withdrawal message.
+```
+
+### Invariant 5
+
+```text
+The function must not accept direct user calls.
+```
+
+### Invariant 6
+
+```text
+The L1 bridge must have enough escrowed tokens to release the withdrawal amount.
+```
+
+### Invariant 7
+
+```text
+The finalize calldata must not change token, recipient, or amount during execution.
+```

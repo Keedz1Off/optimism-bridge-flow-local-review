@@ -113,3 +113,27 @@ Burn amount must equal release amount.
 ```text
 The L2 token must map to the correct L1 token.
 ```
+
+### Invariant 4
+
+```text
+The withdrawal recipient encoded in the message must be the intended recipient.
+```
+
+### Invariant 5
+
+```text
+The withdrawal message must be created only after the burn step.
+```
+
+### Invariant 6
+
+```text
+The message must be sent to the trusted counterpart bridge.
+```
+
+### Invariant 7
+
+```text
+The withdrawal amount should be greater than zero.
+```

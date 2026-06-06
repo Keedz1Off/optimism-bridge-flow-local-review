@@ -160,3 +160,27 @@ Message amount must equal the amount actually transferred.
 ```text
 The L1 token must map to the correct L2 token.
 ```
+
+### Invariant 4
+
+```text
+The recipient encoded in the message must be the intended recipient.
+```
+
+### Invariant 5
+
+```text
+The message must be sent to the trusted counterpart bridge.
+```
+
+### Invariant 6
+
+```text
+The encoded calldata must match the expected finalizeBridgeERC20(...) format.
+```
+
+### Invariant 7
+
+```text
+The deposit amount should be greater than zero.
+```

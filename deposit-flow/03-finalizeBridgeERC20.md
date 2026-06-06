@@ -116,3 +116,27 @@ The original cross-chain sender must be the trusted counterpart bridge.
 ```text
 Mint amount must equal the real source-chain locked amount.
 ```
+
+### Invariant 4
+
+```text
+The minted token must be the correct local token for the remote token.
+```
+
+### Invariant 5
+
+```text
+The recipient must be the recipient encoded in the authentic bridge message.
+```
+
+### Invariant 6
+
+```text
+The function must not accept direct user calls.
+```
+
+### Invariant 7
+
+```text
+The finalize calldata must not change token, recipient, or amount during execution.
+```

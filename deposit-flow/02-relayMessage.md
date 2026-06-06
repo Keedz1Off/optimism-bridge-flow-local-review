@@ -151,3 +151,27 @@ Each message must execute only once.
 ```text
 Validation must happen before execution.
 ```
+
+### Invariant 4
+
+```text
+The message hash must uniquely identify the sender, target, and calldata.
+```
+
+### Invariant 5
+
+```text
+The message must be marked as executed before the external target call.
+```
+
+### Invariant 6
+
+```text
+The target must be the intended destination contract.
+```
+
+### Invariant 7
+
+```text
+The target call must revert if message execution fails.
+```

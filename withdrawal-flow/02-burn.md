@@ -75,3 +75,21 @@ Only the authorized bridge can burn bridge tokens.
 ```text
 Burned amount must be the amount encoded for withdrawal.
 ```
+
+### Invariant 3
+
+```text
+The user must have enough balance to burn the requested amount.
+```
+
+### Invariant 4
+
+```text
+The burn must reduce the user's balance and total supply by the same amount.
+```
+
+### Invariant 5
+
+```text
+The burn amount should be greater than zero.
+```
