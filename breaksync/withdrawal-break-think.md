@@ -15,4 +15,6 @@
 
 1. If tokens were not burned on L2 this may lead to release tokens on L1 without burning on L2.
 
-2. Diffrent amount 
+2. The releases more tokens that the actually burned tokens.
+
+3. 
