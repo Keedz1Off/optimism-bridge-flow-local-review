@@ -62,33 +62,35 @@ Security meaning:
 This is the economic proof for the later L1 release.
 ```
 
-## 4. Main Invariants
+## 4. Invariants
 
-### Invariant 1
+### Main Invariant 1
 
 ```text
 Only the authorized bridge can burn bridge tokens.
 ```
 
-### Invariant 2
+### Main Invariant 2
 
 ```text
 Burned amount must be the amount encoded for withdrawal.
 ```
 
-### Invariant 3
+### Main Invariant 3
 
 ```text
 The user must have enough balance to burn the requested amount.
 ```
 
-### Invariant 4
+## 5. Additional Invariants
+
+### Additional Invariant 1
 
 ```text
 The burn must reduce the user's balance and total supply by the same amount.
 ```
 
-### Invariant 5
+### Additional Invariant 2
 
 ```text
 The burn amount should be greater than zero.

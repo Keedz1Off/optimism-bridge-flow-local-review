@@ -72,11 +72,21 @@ optimism-bridge-flow-local-review/
 
 ## Global Invariants
 
-### Deposit Invariants
+### Main Global Invariants
 
 ```text
 L1 locked amount = L2 minted amount
 ```
+
+```text
+L2 burned amount = L1 released amount
+```
+
+```text
+Only authentic bridge messages can mint or release tokens.
+```
+
+### Additional Deposit Invariants
 
 ```text
 The L1 token must map to the correct L2 token.
@@ -98,11 +108,7 @@ The deposit message must be finalized only through an authentic messenger path.
 The same deposit message must not be executed twice.
 ```
 
-### Withdrawal Invariants
-
-```text
-L2 burned amount = L1 released amount
-```
+### Additional Withdrawal Invariants
 
 ```text
 The L2 token must map to the correct L1 token.
@@ -124,7 +130,7 @@ The withdrawal message must be finalized only through an authentic messenger pat
 The same withdrawal message must not be executed twice.
 ```
 
-### Messenger Invariants
+### Additional Messenger Invariants
 
 ```text
 Only the trusted messenger can relay messages.

@@ -97,45 +97,47 @@ Security meaning:
 Minting must be backed by a real lock / burn on the source chain.
 ```
 
-## 4. Main Invariants
+## 4. Invariants
 
-### Invariant 1
+### Main Invariant 1
 
 ```text
 Only the messenger can call finalizeBridgeERC20(...).
 ```
 
-### Invariant 2
+### Main Invariant 2
 
 ```text
 The original cross-chain sender must be the trusted counterpart bridge.
 ```
 
-### Invariant 3
+### Main Invariant 3
 
 ```text
 Mint amount must equal the real source-chain locked amount.
 ```
 
-### Invariant 4
+## 5. Additional Invariants
+
+### Additional Invariant 1
 
 ```text
 The minted token must be the correct local token for the remote token.
 ```
 
-### Invariant 5
+### Additional Invariant 2
 
 ```text
 The recipient must be the recipient encoded in the authentic bridge message.
 ```
 
-### Invariant 6
+### Additional Invariant 3
 
 ```text
 The function must not accept direct user calls.
 ```
 
-### Invariant 7
+### Additional Invariant 4
 
 ```text
 The finalize calldata must not change token, recipient, or amount during execution.

@@ -94,45 +94,47 @@ Security meaning:
 The release message must match the real burn.
 ```
 
-## 4. Main Invariants
+## 4. Invariants
 
-### Invariant 1
+### Main Invariant 1
 
 ```text
 Tokens must be burned on L2 before the L1 release message is finalized.
 ```
 
-### Invariant 2
+### Main Invariant 2
 
 ```text
 Burn amount must equal release amount.
 ```
 
-### Invariant 3
+### Main Invariant 3
 
 ```text
 The L2 token must map to the correct L1 token.
 ```
 
-### Invariant 4
+## 5. Additional Invariants
+
+### Additional Invariant 1
 
 ```text
 The withdrawal recipient encoded in the message must be the intended recipient.
 ```
 
-### Invariant 5
+### Additional Invariant 2
 
 ```text
 The withdrawal message must be created only after the burn step.
 ```
 
-### Invariant 6
+### Additional Invariant 3
 
 ```text
 The message must be sent to the trusted counterpart bridge.
 ```
 
-### Invariant 7
+### Additional Invariant 4
 
 ```text
 The withdrawal amount should be greater than zero.

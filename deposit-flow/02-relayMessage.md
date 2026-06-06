@@ -132,45 +132,47 @@ This calls the destination contract with the provided calldata.
 
 If execution fails, the function reverts.
 
-## 4. Main Invariants
+## 4. Invariants
 
-### Invariant 1
+### Main Invariant 1
 
 ```text
 Only the trusted messenger can relay messages.
 ```
 
-### Invariant 2
+### Main Invariant 2
 
 ```text
 Each message must execute only once.
 ```
 
-### Invariant 3
+### Main Invariant 3
 
 ```text
 Validation must happen before execution.
 ```
 
-### Invariant 4
+## 5. Additional Invariants
+
+### Additional Invariant 1
 
 ```text
 The message hash must uniquely identify the sender, target, and calldata.
 ```
 
-### Invariant 5
+### Additional Invariant 2
 
 ```text
 The message must be marked as executed before the external target call.
 ```
 
-### Invariant 6
+### Additional Invariant 3
 
 ```text
 The target must be the intended destination contract.
 ```
 
-### Invariant 7
+### Additional Invariant 4
 
 ```text
 The target call must revert if message execution fails.
