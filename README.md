@@ -64,15 +64,86 @@ optimism-bridge-flow-local-review/
 |   +-- 01-withdraw-or-bridgeERC20To.md
 |   +-- 02-burn.md
 |   +-- 03-finalizeWithdrawal.md
-+-- concepts/
-|   +-- fake-release.md
-|   +-- ghost-mint.md
-|   +-- message-hash-and-replay.md
-|   +-- xDomainMessageSender.md
 +-- breaksync/
     +-- README.md
     +-- deposit-break-think.md
     +-- withdrawal-break-think.md
+```
+
+## Global Invariants
+
+### Deposit Invariants
+
+```text
+L1 locked amount = L2 minted amount
+```
+
+```text
+The L1 token must map to the correct L2 token.
+```
+
+```text
+The recipient encoded in the message must be the intended recipient.
+```
+
+```text
+The deposit message must be sent to the trusted counterpart bridge.
+```
+
+```text
+The deposit message must be finalized only through an authentic messenger path.
+```
+
+```text
+The same deposit message must not be executed twice.
+```
+
+### Withdrawal Invariants
+
+```text
+L2 burned amount = L1 released amount
+```
+
+```text
+The L2 token must map to the correct L1 token.
+```
+
+```text
+The withdrawal recipient must be the intended recipient.
+```
+
+```text
+The withdrawal message must be created only after the burn step.
+```
+
+```text
+The withdrawal message must be finalized only through an authentic messenger path.
+```
+
+```text
+The same withdrawal message must not be executed twice.
+```
+
+### Messenger Invariants
+
+```text
+Only the trusted messenger can relay messages.
+```
+
+```text
+The message hash must uniquely identify the sender, target, and calldata.
+```
+
+```text
+The message must be marked as executed before the external target call.
+```
+
+```text
+Validation must happen before execution.
+```
+
+```text
+The target must be the intended destination contract.
 ```
 
 ## What I Practiced
