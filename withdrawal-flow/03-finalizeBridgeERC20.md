@@ -51,15 +51,13 @@ Original source: `ethereum-optimism/optimism/packages/contracts-bedrock/src/univ
 
 ## 2. What This Function Does
 
-`finalizeBridgeERC20(...)` completes the deposit on the destination chain.
+`finalizeBridgeERC20(...)` completes the ERC20 bridge transfer on the current chain. For L2 -> L1 withdrawal, it releases escrowed L1 tokens.
 
 In simple words:
 
 ```text
-The L2 bridge receives a valid cross-chain message and mints tokens to the user.
+The L1 bridge receives a valid withdrawal message and releases escrowed tokens.
 ```
-
-This function is critical because it creates destination-chain value.
 
 ## 3. Important Parts Explained
 
@@ -80,40 +78,36 @@ The direct caller must be the local messenger and the cross-chain sender must be
 Security meaning:
 
 ```text
-Users should not be able to call finalizeBridgeERC20(...) directly.
+Users should not directly finalize withdrawals.
 ```
 
-### Token Pair Check
+### Escrow Release
 
 ```solidity
-require(
-    _isCorrectTokenPair(_localToken, _remoteToken),
-    "StandardBridge: wrong remote token for Optimism Mintable ERC20 local token"
-);
+deposits[_localToken][_remoteToken] = deposits[_localToken][_remoteToken] - _amount;
+IERC20(_localToken).safeTransfer(_to, _amount);
 ```
 
-This checks that the local mintable token maps to the correct remote token.
+For L2 -> L1 withdrawal, this branch decreases escrow accounting and transfers L1 tokens to the recipient.
 
 Security meaning:
 
 ```text
-The token pair must be correct before minting.
+The release must match a valid withdrawal message.
 ```
 
-The cross-chain sender check is handled by `onlyOtherBridge`.
-
-### Mint
+### Release Tokens
 
 ```solidity
-IOptimismMintableERC20(_localToken).mint(_to, _amount);
+IERC20(_localToken).safeTransfer(_to, _amount);
 ```
 
-This mints destination-chain tokens to the recipient.
+This releases L1 tokens to the recipient.
 
 Security meaning:
 
 ```text
-Minting must be backed by a real lock / burn on the source chain.
+This release must be backed by a real L2 burn.
 ```
 
 ## 4. Invariants
@@ -121,19 +115,19 @@ Minting must be backed by a real lock / burn on the source chain.
 ### Main Invariant 1
 
 ```text
-Only an authentic message from the counterpart bridge can call finalizeBridgeERC20(...).
+Only an authentic withdrawal message can release L1 tokens.
 ```
 
 ### Main Invariant 2
 
 ```text
-The original cross-chain sender must be the trusted counterpart bridge.
+Released amount must equal burned amount.
 ```
 
 ### Main Invariant 3
 
 ```text
-Mint amount must equal the real source-chain locked amount.
+Released token must be the correct L1 token for the burned L2 token.
 ```
 
 ## 5. Additional Invariants
@@ -141,19 +135,19 @@ Mint amount must equal the real source-chain locked amount.
 ### Additional Invariant 1
 
 ```text
-The minted token must be the correct local token for the remote token.
+The recipient must be the recipient encoded in the authentic withdrawal message.
 ```
 
 ### Additional Invariant 2
 
 ```text
-The recipient must be the recipient encoded in the authentic bridge message.
+The function must not accept direct user calls.
 ```
 
 ### Additional Invariant 3
 
 ```text
-The function must not accept direct user calls.
+The L1 bridge must have enough escrowed tokens to release the withdrawal amount.
 ```
 
 ### Additional Invariant 4

@@ -1,8 +1,6 @@
-
-# bridgeERC20To(...)
+# _initiateBridgeERC20(...)
 
 ## Invariants
-
 
 1. Tokens must be burned on L2 before the L1 release message is finalized.
 
@@ -10,11 +8,22 @@
 
 3. The L2 token must map to the correct L1 token.
 
-
-## Concenquences 
+## Concenquences
 
 1. If tokens were not burned on L2 this may lead to release tokens on L1 without burning on L2.
 
 2. The releases more tokens that the actually burned tokens.
 
 3. The token on L1 does not match the token on L2.
+
+# finalizeBridgeERC20(...)
+
+## Invariants
+
+1. Only an authentic withdrawal message can release L1 tokens.
+
+2. Released amount must equal burned amount.
+
+3. Released token must be the correct L1 token for the burned L2 token.
+
+## Concenquences

@@ -1,4 +1,4 @@
-# depositERC20(...)
+# _initiateBridgeERC20(...)
 
 ## Invariants 
 1.Transfer must succeed before the bridge sends the message.
@@ -21,7 +21,7 @@
 <img width="1024" height="517" alt="image" src="https://github.com/user-attachments/assets/6394f956-c7d3-4b4b-afba-f76ff5d89a1f" />
 
 
-# replayMessage()
+# relayMessage()
 
 ## Invariants
 
@@ -53,7 +53,6 @@
 1. This can me called by anoyone, this may lead to ghost mint (mint without lock).
 
 2. In the worst case, this function can be called by another spoofed bridge instead of the original L1 bridge.
-    bgv 
 
 
 
