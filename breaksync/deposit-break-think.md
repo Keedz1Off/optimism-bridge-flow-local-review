@@ -21,7 +21,7 @@
 <img width="1024" height="517" alt="image" src="https://github.com/user-attachments/assets/6394f956-c7d3-4b4b-afba-f76ff5d89a1f" />
 
 
-# replayMessage.md
+# replayMessage()
 
 
 1. Only the trusted messenger can relay messages.
@@ -36,12 +36,16 @@
 
 2. It may lead to replay (or we can call it as twice exctution)
 
-3 Validion happens after execution that makes validation useless.
+3. Validion happens after execution that makes validation useless.
  
 
 
 
+# finalizeBridgeERC20()
+
+1. 
 
 
+##
 
 
