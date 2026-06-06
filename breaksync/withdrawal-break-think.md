@@ -17,4 +17,4 @@
 
 2. The releases more tokens that the actually burned tokens.
 
-3. 
+3. The token on L1 does not match the token on L2.
