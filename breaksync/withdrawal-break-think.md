@@ -32,7 +32,10 @@
 
 2. The Bridge releases more tokens than the actually burned tokens.
    <img width="922" height="261" alt="image" src="https://github.com/user-attachments/assets/414285db-10ee-4760-9bd3-97773a55e011" />
-3.  The user 
+3.  A user receives another token.
+   <img width="783" height="339" alt="image" src="https://github.com/user-attachments/assets/f93a08b9-ba18-4670-b247-b803ad6795b6" />
+
+   
 
 
 
