@@ -74,7 +74,7 @@ optimism-bridge-flow-local-review/
 |   +-- 01-initiateBridgeERC20.md
 |   +-- 02-burn.md
 |   +-- 03-finalizeBridgeERC20.md
-+-- breaksync/
++-- break-think/
     +-- README.md
     +-- deposit-break-think.md
     +-- withdrawal-break-think.md
