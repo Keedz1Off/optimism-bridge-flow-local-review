@@ -22,8 +22,20 @@
 ## Invariant
 
 
+1. Only the authorized bridge can burn bridge tokens.
+
+2. Burned amount must be the amount encoded for withdrawal.
+
+3. The user must have enough balance to burn the requested amount.
 
 ## Concenquences
+1. An attacker calls the function and changes the parameters (_from ) to steal user's funds
+ <img width="970" height="523" alt="image" src="https://github.com/user-attachments/assets/41ee12ca-57fc-48e1-8398-b041773f2fee" />
+
+2. This may lead to withdrawal of amount  (tokens ) which more than burned amount.
+
+<img width="840" height="232" alt="image" src="https://github.com/user-attachments/assets/e66fe9aa-02ea-4454-9f7e-76d9f8ae5cef" />
+
 
 
 # finalizeBridgeERC20(...)
