@@ -61,6 +61,34 @@ Main withdrawal invariant:
 L2 burned amount = L1 released amount
 ```
 
+## Core Functions Reviewed
+
+This repository focuses on the functions that carry the main bridge logic.
+
+### Main Deposit Functions
+
+```text
+_initiateBridgeERC20(...)
+relayMessage(...)
+finalizeBridgeERC20(...)
+```
+
+### Main Withdrawal Functions
+
+```text
+_initiateBridgeERC20(...)
+burn(...) branch
+finalizeBridgeERC20(...)
+```
+
+### Why These Functions Matter
+
+```text
+_initiateBridgeERC20(...) = source-chain accounting and message creation
+relayMessage(...) = message validation, replay protection, and execution
+finalizeBridgeERC20(...) = destination-chain mint or release
+```
+
 ## Repository Structure
 
 ```text
