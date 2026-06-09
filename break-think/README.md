@@ -21,4 +21,4 @@ finalizeBridgeERC20(...)
 ## 1 INVARIANT
 
 
-## 2 CONCENAUENCES
+## 2 CONSEQUENCES
