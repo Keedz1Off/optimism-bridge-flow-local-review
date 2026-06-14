@@ -6,6 +6,7 @@ Its what will be happen if this invarint breaks.
 
 ```text
 _initiateBridgeERC20(...)
+sendMessage(...)
 relayMessage(...)
 finalizeBridgeERC20(...)
 ```
@@ -15,6 +16,7 @@ finalizeBridgeERC20(...)
 ```text
 _initiateBridgeERC20(...)
 burn(...) branch
+sendMessage(...)
 finalizeBridgeERC20(...)
 ```
 

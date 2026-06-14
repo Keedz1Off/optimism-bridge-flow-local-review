@@ -18,6 +18,8 @@ Function code snippets are taken from the official Optimism Bedrock contracts:
 ethereum-optimism/optimism/packages/contracts-bedrock/src/
 ```
 
+This repository follows the Optimism bridge/message flow, not Sky DSS accounting.
+
 ## Bridge Model
 
 ### Deposit Flow: L1 -> L2
@@ -29,9 +31,10 @@ flowchart TD
     C --> D["safeTransferFrom(user, L1 bridge, amount)"]
     D --> E["deposits[L1Token][L2Token] += amount"]
     E --> F["messenger.sendMessage(...)"]
-    F --> G["relayMessage(...) on L2"]
-    G --> H["finalizeBridgeERC20(...) on L2"]
-    H --> I["mint(to, amount)"]
+    F --> G["CrossDomainMessenger sends encoded relayMessage(...)"]
+    G --> H["relayMessage(...) on L2"]
+    H --> I["finalizeBridgeERC20(...) on L2"]
+    I --> J["mint(to, amount)"]
 ```
 
 Main deposit invariant:
@@ -48,11 +51,12 @@ flowchart TD
     B --> C["_initiateBridgeERC20(...)"]
     C --> D["burn(user, amount)"]
     D --> E["messenger.sendMessage(...)"]
-    E --> F["prove / validate withdrawal on L1"]
-    F --> G["relayMessage(...) on L1"]
-    G --> H["finalizeBridgeERC20(...) on L1"]
-    H --> I["deposits[L1Token][L2Token] -= amount"]
-    I --> J["safeTransfer(user, amount)"]
+    E --> F["CrossDomainMessenger sends encoded relayMessage(...)"]
+    F --> G["prove / validate withdrawal on L1"]
+    G --> H["relayMessage(...) on L1"]
+    H --> I["finalizeBridgeERC20(...) on L1"]
+    I --> J["deposits[L1Token][L2Token] -= amount"]
+    J --> K["safeTransfer(user, amount)"]
 ```
 
 Main withdrawal invariant:
@@ -69,6 +73,7 @@ This repository focuses on the functions that carry the main bridge logic.
 
 ```text
 _initiateBridgeERC20(...)
+sendMessage(...)
 relayMessage(...)
 finalizeBridgeERC20(...)
 ```
@@ -78,6 +83,7 @@ finalizeBridgeERC20(...)
 ```text
 _initiateBridgeERC20(...)
 burn(...) branch
+sendMessage(...)
 finalizeBridgeERC20(...)
 ```
 
@@ -85,8 +91,21 @@ finalizeBridgeERC20(...)
 
 ```text
 _initiateBridgeERC20(...) = source-chain accounting and message creation
+sendMessage(...) = messenger message creation
 relayMessage(...) = message validation, replay protection, and execution
 finalizeBridgeERC20(...) = destination-chain mint or release
+```
+
+Important Optimism detail:
+
+```text
+StandardBridge._initiateBridgeERC20(...) is shared by L1 and L2 bridges.
+
+On L1 deposit:
+canonical token -> safeTransferFrom(...) -> deposits += amount
+
+On L2 withdrawal:
+OptimismMintableERC20 -> burn(...)
 ```
 
 ## Repository Structure
@@ -96,8 +115,9 @@ optimism-bridge-flow-local-review/
 +-- README.md
 +-- deposit-flow/
 |   +-- 01-initiateBridgeERC20.md
-|   +-- 02-relayMessage.md
-|   +-- 03-finalizeBridgeERC20.md
+|   +-- 02-sendMessage.md
+|   +-- 03-relayMessage.md
+|   +-- 04-finalizeBridgeERC20.md
 +-- withdrawal-flow/
 |   +-- 01-initiateBridgeERC20.md
 |   +-- 02-burn.md
