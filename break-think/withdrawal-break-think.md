@@ -8,11 +8,11 @@
 
 3. The L2 token must map to the correct L1 token.
 
-## Concenquences
+## Consequences
 
-1. If tokens were not burned on L2 this may lead to release tokens on L1 without burning on L2.
+1. If tokens are not burned on L2, this may lead to releasing tokens on L1 without burning on L2.
 
-2. The Bridge releases more tokens than the actually burned tokens.
+2. The bridge may release more tokens than were actually burned.
 
 3. The token on L1 does not match the token on L2.
 
@@ -28,11 +28,11 @@
 
 3. The user must have enough balance to burn the requested amount.
 
-## Concenquences
-1. An attacker calls the function and changes the parameters (_from ) to steal user's funds
+## Consequences
+1. An attacker may call the function and change the _from parameter to steal the user's funds.
  <img width="970" height="523" alt="image" src="https://github.com/user-attachments/assets/41ee12ca-57fc-48e1-8398-b041773f2fee" />
 
-2. This may lead to withdrawal of amount  (tokens ) which more than burned amount.
+2. This may lead to withdrawing more tokens than were burned.
 
 <img width="840" height="232" alt="image" src="https://github.com/user-attachments/assets/e66fe9aa-02ea-4454-9f7e-76d9f8ae5cef" />
 
@@ -48,13 +48,13 @@
 
 3. Released token must be the correct L1 token for the burned L2 token.
 
-## Concenquences
+## Consequences
 
-1. An Attacker creates a spoofed message that may lead to a ake release.
+1. An attacker may create a spoofed message that leads to a fake release.
 
-2. The Bridge releases more tokens than the actually burned tokens.
+2. The bridge may release more tokens than were actually burned.
    <img width="922" height="261" alt="image" src="https://github.com/user-attachments/assets/414285db-10ee-4760-9bd3-97773a55e011" />
-3.  A user receives another token.
+3. A user may receive the wrong token.
    <img width="783" height="339" alt="image" src="https://github.com/user-attachments/assets/f93a08b9-ba18-4670-b247-b803ad6795b6" />
 
    

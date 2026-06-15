@@ -7,11 +7,11 @@
 
 3.The L1 token must match to the correct L2 token.
 
-## Concenquences
+## Consequences
 
 1. It may lead to sending a message without locking tokens on L1.
 
-2. The message amount more than the amount actually transfered
+2. The message amount may be greater than the amount actually transferred.
 
 <img width="1258" height="430" alt="image" src="https://github.com/user-attachments/assets/a4e08003-fc77-4c08-ac14-8c41ec83d99a" />
 
@@ -31,13 +31,13 @@
 
 3. Validation must happen before execution.
 
-## Concenquences
+## Consequences
 
-1. Function can be called by anyone.Anyone changes parameter _target, _sender;
+1. The function can be called by anyone. An attacker may change the _target or _sender parameters.
 
-2. It may lead to replay (or we can call it as twice exctution)
+2. It may lead to replay or double execution.
 
-3. Validion happens after execution that makes validation useless.
+3. Validation happens after execution, which makes validation useless.
  
 
 
@@ -49,8 +49,8 @@
 
 2. The original cross-chain sender must be the trusted counterpart bridge.
 
-## Concenquences
-1. This can me called by anoyone, this may lead to ghost mint (mint without lock).
+## Consequences
+1. This may be called by anyone, which can lead to ghost mint (mint without lock).
 
 2. In the worst case, this function can be called by another spoofed bridge instead of the original L1 bridge.
 
