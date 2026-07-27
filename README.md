@@ -113,6 +113,7 @@ OptimismMintableERC20 -> burn(...)
 ```text
 optimism-bridge-flow-local-review/
 +-- README.md
++-- glossary.md
 +-- deposit-flow/
 |   +-- 01-initiateBridgeERC20.md
 |   +-- 02-sendMessage.md
@@ -126,7 +127,25 @@ optimism-bridge-flow-local-review/
     +-- README.md
     +-- deposit-break-think.md
     +-- withdrawal-break-think.md
++-- exploit-labs/
+    +-- README.md
 ```
+
+## Exploit Labs
+
+The `exploit-labs/` folder contains simplified PoC-style notes for Optimism bridge security patterns.
+
+The goal is to prove broken invariants with small vulnerable/fixed examples:
+
+```text
+missing messenger check
+missing counterpart bridge check
+withdrawal message created without burn
+```
+
+## Glossary
+
+The `glossary.md` file contains important Optimism bridge terms used in this review.
 
 ## Global Invariants
 
